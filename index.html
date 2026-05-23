@@ -649,7 +649,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     </h1>
     <div class="hero-bottom" id="heroBtm">
       <p class="hero-desc">
-        <strong>Dharani Jayan</strong> — Designing experiences where <strong>aesthetics meet function</strong>. Based in Tamil Nadu, crafting premium digital presence for brands that want to stand out.
+        <strong>Dharani Jayan</strong> — Designing experiences where <strong>aesthetics meet function</strong>. Crafting premium digital presence for brands that want to stand out.
       </p>
       <div class="hero-ctas">
         <a href="#projects" class="btn-p mag">View Work ↗</a>
@@ -875,24 +875,64 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-top:1.5rem;max-width:480px">Logo design, visual identity systems, stationery and brand collateral. Click any card to view the full project on Behance.</p>
   </div>
   <div class="brand-grid">
-    <div class="bc-wrap reveal d2">
-      <div class="bc" onclick="openLightbox('keshri')">
-        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/keshri.png" alt="Keshri Brand" loading="lazy">
+
+    <a class="bc-wrap reveal d2"
+       href="https://www.behance.net/gallery/247231533/KESHRI-ACADEMY"
+       target="_blank" rel="noopener">
+      <div class="bc">
+        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/keshri.png" alt="Keshri Academy" loading="lazy">
+        <div class="bc-overlay">
+          <div class="bc-be-icon">Be</div>
+          <div class="bc-be-txt">View on Behance</div>
+        </div>
       </div>
-      <div class="bc-lbl">Keshri</div>
-    </div>
-    <div class="bc-wrap reveal d3">
-      <div class="bc" onclick="openLightbox('kriscol')">
-        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/kriscol.png" alt="Kriscol Brand" loading="lazy">
+      <div class="bc-lbl">
+        <div>
+          <div class="bc-lbl-name">Keshri Academy</div>
+          <div class="bc-lbl-cat">Education · Brand Identity</div>
+        </div>
+        <span class="bc-lbl-arrow">↗</span>
       </div>
-      <div class="bc-lbl">Kriscol</div>
-    </div>
-    <div class="bc-wrap reveal d4">
-      <div class="bc" onclick="openLightbox('qp')">
-        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/QP.png" alt="QP Brand" loading="lazy">
+    </a>
+
+    <a class="bc-wrap reveal d3"
+       href="https://www.behance.net/gallery/246996937/Kriscol"
+       target="_blank" rel="noopener">
+      <div class="bc">
+        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/kriscol.png" alt="Kriscol Roofing" loading="lazy">
+        <div class="bc-overlay">
+          <div class="bc-be-icon">Be</div>
+          <div class="bc-be-txt">View on Behance</div>
+        </div>
       </div>
-      <div class="bc-lbl">QP</div>
-    </div>
+      <div class="bc-lbl">
+        <div>
+          <div class="bc-lbl-name">Kriscol Roofing</div>
+          <div class="bc-lbl-cat">Roofing · Full Identity</div>
+        </div>
+        <span class="bc-lbl-arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="bc-wrap reveal d4"
+       href="https://www.behance.net/gallery/249301889/QuickpathLogo-design"
+       target="_blank" rel="noopener">
+      <div class="bc">
+        <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/QP.png" alt="QuickPath Logo" loading="lazy">
+        <div class="bc-overlay">
+          <div class="bc-be-icon">Be</div>
+          <div class="bc-be-txt">View on Behance</div>
+        </div>
+      </div>
+      <div class="bc-lbl">
+        <div>
+          <div class="bc-lbl-name">QuickPath</div>
+          <div class="bc-lbl-cat">Tech · Logo Design</div>
+        </div>
+        <span class="bc-lbl-arrow">↗</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -1166,7 +1206,7 @@ const cDot=document.getElementById('cDot'), cRing=document.getElementById('cRing
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.left=mx+'px';cDot.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button,.pc,.bc,.skc,.svc,.atag,.hero-card,.btn-dl,.nav-resume').forEach(el=>{
+document.querySelectorAll('a,button,.pc,.bc,.bc-wrap,.skc,.svc,.atag,.hero-card,.btn-dl,.nav-resume').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cRing.classList.add('hov');cDot.classList.add('hov');});
   el.addEventListener('mouseleave',()=>{cRing.classList.remove('hov');cDot.classList.remove('hov');});
 });
