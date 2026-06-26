@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <style>
 /* ─── RESET & TOKENS ─── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -271,7 +271,7 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
    but the seam needs 3w+3g — a half-gap snap every cycle). Moving the spacing onto each
    item as a trailing margin makes every item "own" its gap, so the track is exactly
    6×(w+g) and translateX(-50%) lands precisely on the duplicate set — no jump. */
-.brand-track{display:flex;width:max-content;will-change:transform;animation:dwLeft var(--mq-dur,32s) linear infinite}
+.brand-track{display:flex;width:max-content;will-change:transform;animation:dwLeft 21.3s linear infinite}
 .brand-wrap:hover .brand-track{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.brand-track{animation-play-state:paused}}
 
@@ -469,6 +469,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   /* BUG FIX: 120px edge fades ate up most of the strip on narrow phones — scale down */
   .brand-wrap::before,.brand-wrap::after{width:48px}
   .bc-wrap{flex:0 0 220px;margin-right:1rem}
+  .brand-track{animation-duration:15.7s}
   #services{padding:5rem 1.5rem}
   .svc-grid{grid-template-columns:1fr}
   #contact{grid-template-columns:minmax(0,1fr);padding:5rem 1.5rem;gap:3rem}
@@ -490,6 +491,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .hero-ctas{flex-direction:column;align-items:flex-start}
   .dw-card{width:140px}
   .bc-wrap{flex:0 0 180px;margin-right:.85rem}
+  .brand-track{animation-duration:12.9s}
   .brand-wrap::before,.brand-wrap::after{width:32px}
   .lb-behance{display:none}
 }
@@ -1183,7 +1185,6 @@ function startHero() {
 
   initScrollReveal();
   initSkillBars();
-  initBrandMarquee();
 }
 
 function fallbackReveal() {
@@ -1194,36 +1195,6 @@ function fallbackReveal() {
   document.querySelectorAll('.orb').forEach(o => o.style.opacity = '1');
   initScrollReveal();
   initSkillBars();
-  initBrandMarquee();
-}
-
-/* ─────────────────────────────────
-   BRANDING MARQUEE — constant speed loop
-   BUG FIX: duration was a flat 36s no matter how wide the track
-   actually was, so speed (and the "smoothness") changed across
-   breakpoints and after spacing tweaks. Lock px/sec instead, and
-   recompute on resize so it always flows at the same steady rate.
-──────────────────────────────────── */
-function initBrandMarquee() {
-  const track = document.querySelector('.brand-track');
-  if (!track) return;
-
-  const SPEED = 45; // px per second — constant everywhere
-
-  function setDuration() {
-    const halfWidth = track.scrollWidth / 2; // one full (non-duplicated) set
-    if (!halfWidth) return;
-    const duration = Math.max(halfWidth / SPEED, 10);
-    track.style.setProperty('--mq-dur', duration + 's');
-  }
-
-  setDuration();
-
-  let resizeT;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(setDuration, 200);
-  }, { passive: true });
 }
 
 /* ─────────────────────────────────
