@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -271,7 +274,7 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
    but the seam needs 3w+3g — a half-gap snap every cycle). Moving the spacing onto each
    item as a trailing margin makes every item "own" its gap, so the track is exactly
    6×(w+g) and translateX(-50%) lands precisely on the duplicate set — no jump. */
-.brand-track{display:flex;width:max-content;will-change:transform;animation:dwLeft 36s linear infinite}
+.brand-track{display:flex;width:max-content;will-change:transform;animation:dwLeft var(--mq-dur,32s) linear infinite}
 .brand-wrap:hover .brand-track{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.brand-track{animation-play-state:paused}}
 
@@ -1180,6 +1183,7 @@ function startHero() {
 
   initScrollReveal();
   initSkillBars();
+  initBrandMarquee();
 }
 
 function fallbackReveal() {
@@ -1190,6 +1194,36 @@ function fallbackReveal() {
   document.querySelectorAll('.orb').forEach(o => o.style.opacity = '1');
   initScrollReveal();
   initSkillBars();
+  initBrandMarquee();
+}
+
+/* ─────────────────────────────────
+   BRANDING MARQUEE — constant speed loop
+   BUG FIX: duration was a flat 36s no matter how wide the track
+   actually was, so speed (and the "smoothness") changed across
+   breakpoints and after spacing tweaks. Lock px/sec instead, and
+   recompute on resize so it always flows at the same steady rate.
+──────────────────────────────────── */
+function initBrandMarquee() {
+  const track = document.querySelector('.brand-track');
+  if (!track) return;
+
+  const SPEED = 45; // px per second — constant everywhere
+
+  function setDuration() {
+    const halfWidth = track.scrollWidth / 2; // one full (non-duplicated) set
+    if (!halfWidth) return;
+    const duration = Math.max(halfWidth / SPEED, 10);
+    track.style.setProperty('--mq-dur', duration + 's');
+  }
+
+  setDuration();
+
+  let resizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(setDuration, 200);
+  }, { passive: true });
 }
 
 /* ─────────────────────────────────
@@ -1412,3 +1446,4 @@ document.getElementById('mobNav').addEventListener('click', e => {
 </script>
 </body>
 </html>
+
