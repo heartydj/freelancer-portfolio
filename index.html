@@ -357,11 +357,11 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .svc-arr{position:absolute;bottom:3rem;right:3rem;font-size:1.4rem;color:var(--border2);transition:all .35s var(--r-ease)}
 .svc:hover .svc-arr{color:var(--accent);transform:translate(6px,-6px)}
 
-/* ─── CONTACT ─── */
-#contact{padding:8rem 3rem;background:var(--s1);display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start}
+/* ─── CONNECT ─── */
+#contact{padding:8rem 3rem;background:var(--s1);display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
 .ct-title{font-family:var(--fd);font-size:clamp(2.5rem,5vw,5.5rem);font-weight:800;letter-spacing:-0.045em;line-height:.92;margin-bottom:2.2rem}
 .ct-title em{font-style:normal;color:var(--accent)}
-.ct-desc{font-size:.9rem;color:var(--muted);line-height:1.78;margin-bottom:3rem;max-width:340px}
+.ct-desc{font-size:.9rem;color:var(--muted);line-height:1.78;max-width:380px}
 .ct-lnks{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
 .ct-lnk{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--s1);text-decoration:none;color:var(--text);transition:background .3s;gap:1rem}
 .ct-lnk:hover{background:var(--s2)}
@@ -374,16 +374,6 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .ct-lnk.ct-resume:hover{background:rgba(201,255,87,.06)}
 .ct-lnk.ct-resume .cll{color:var(--accent)}
 .ct-lnk.ct-resume .cla{color:var(--accent)}
-.cf{display:flex;flex-direction:column;gap:0}
-.fg{position:relative;border-bottom:1px solid var(--border);padding:1.3rem 0;transition:border-color .35s}
-.fg:first-child{border-top:1px solid var(--border)}
-.fg:focus-within{border-color:var(--accent)}
-.fl{display:block;font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;transition:color .3s}
-.fg:focus-within .fl{color:var(--accent)}
-.fi,.fta{width:100%;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--fb);font-size:.9rem;font-weight:400;line-height:1.6;resize:none}
-.fta{min-height:90px}
-.fi::placeholder,.fta::placeholder{color:rgba(239,239,239,.2)}
-.fs-btn{margin-top:2rem}
 
 /* ─── DEV PROJECTS ─── */
 #devprojects{padding:8rem 3rem}
@@ -471,7 +461,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .bc-wrap{flex:0 0 220px}
   #services{padding:5rem 1.5rem}
   .svc-grid{grid-template-columns:1fr}
-  #contact{grid-template-columns:1fr;padding:5rem 1.5rem;gap:4rem}
+  #contact{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3rem}
   #devprojects{padding:5rem 1.5rem}
   .dev-grid{grid-template-columns:1fr}
   footer{padding:2rem 1.5rem}
@@ -529,7 +519,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <li><a href="#branding">Branding</a></li>
     <li><a href="#devprojects">Dev</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Connect</a></li>
   </ul>
   <div class="nav-avl"><span class="avl-dot"></span>Available for Work</div>
   <button class="hbg" id="hbg" onclick="openMob()" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -545,7 +535,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   <a href="#branding" onclick="closeMob()">Branding</a>
   <a href="#devprojects" onclick="closeMob()">Dev</a>
   <a href="#services" onclick="closeMob()">Services</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="#contact" onclick="closeMob()">Connect</a>
 </div>
 
 <main>
@@ -572,7 +562,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       </p>
       <div class="hero-ctas">
         <a href="#projects" class="btn-p mag">View Work ↗</a>
-        <a href="#contact" class="btn-o mag">Get in Touch</a>
+        <a href="#contact" class="btn-o mag">Let's Connect</a>
         <a href="https://heartydj.github.io/freelancer-portfolio/DHARANI%20JAYAN%20RESUME.pdf" download class="btn-dl mag"><span class="dl-ico">↓</span><span class="dl-txt">Download CV</span></a>
       </div>
     </div>
@@ -1052,12 +1042,14 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
+<!-- ══ CONNECT ══ -->
 <section id="contact">
   <div class="reveal">
-    <div class="slabel">Get in Touch</div>
-    <h2 class="ct-title">Let's Build<br><em>Something</em><br>Amazing</h2>
-    <p class="ct-desc">Available for full-time opportunities and freelance projects. Let's collaborate and create something memorable together.</p>
+    <div class="slabel">Let's Connect</div>
+    <h2 class="ct-title">Let's Create<br><em>Something</em><br>Together</h2>
+    <p class="ct-desc">Available for full-time opportunities and freelance projects. Reach out on whichever channel works best for you.</p>
+  </div>
+  <div class="reveal d2">
     <div class="ct-lnks">
       <a href="mailto:dharanijayan@gmail.com" class="ct-lnk"><span class="cll">Email</span><span class="clv">dharanijayan@gmail.com</span><span class="cla">↗</span></a>
       <a href="tel:+917358987445" class="ct-lnk"><span class="cll">Phone</span><span class="clv">+91 73589 87445</span><span class="cla">↗</span></a>
@@ -1066,16 +1058,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" class="ct-lnk"><span class="cll">Instagram</span><span class="clv">dharani.designss</span><span class="cla">↗</span></a>
       <a href="https://heartydj.github.io/freelancer-portfolio/DHARANI%20JAYAN%20RESUME.pdf" download class="ct-lnk ct-resume"><span class="cll">Resume</span><span class="clv">Download PDF</span><span class="cla">↓</span></a>
     </div>
-  </div>
-  <div class="reveal d2">
-    <!-- BUG FIX: form never used a <form> tag, so onsubmit wouldn't fire — wrapped properly -->
-    <form class="cf" onsubmit="handleForm(event)">
-      <div class="fg"><label class="fl">Your Name</label><input type="text" class="fi" placeholder="John Doe" required></div>
-      <div class="fg"><label class="fl">Email Address</label><input type="email" class="fi" placeholder="hello@example.com" required></div>
-      <div class="fg"><label class="fl">Project Type</label><input type="text" class="fi" placeholder="Branding / UI/UX / Frontend"></div>
-      <div class="fg"><label class="fl">Message</label><textarea class="fta" placeholder="Tell me about your project..." rows="4"></textarea></div>
-      <div class="fs-btn"><button type="submit" class="btn-p" id="fsubBtn">Send Message ↗</button></div>
-    </form>
   </div>
 </section>
 
@@ -1419,24 +1401,6 @@ document.getElementById('mobNav').addEventListener('click', e => {
   if (e.target === document.getElementById('mobNav')) closeMob();
 });
 
-/* ─────────────────────────────────
-   CONTACT FORM
-──────────────────────────────────── */
-function handleForm(e) {
-  e.preventDefault();
-  const b = document.getElementById('fsubBtn');
-  const orig = b.textContent;
-  b.textContent = 'Message Sent ✓';
-  b.style.background  = 'var(--accent)';
-  b.style.boxShadow   = '0 0 40px rgba(201,255,87,.35)';
-  b.disabled          = true;
-  setTimeout(() => {
-    b.textContent       = orig;
-    b.style.boxShadow   = '';
-    b.disabled          = false;
-    e.target.reset();
-  }, 3500);
-}
 </script>
 </body>
 </html>
