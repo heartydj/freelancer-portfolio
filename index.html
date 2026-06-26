@@ -363,17 +363,20 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .svc:hover .svc-arr{color:var(--accent);transform:translate(6px,-6px)}
 
 /* ─── CONNECT ─── */
-#contact{padding:8rem 3rem;background:var(--s1);display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+#contact{padding:8rem 3rem;background:var(--s1);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7rem;align-items:center}
 .ct-title{font-family:var(--fd);font-size:clamp(2.5rem,5vw,5.5rem);font-weight:800;letter-spacing:-0.045em;line-height:.92;margin-bottom:2.2rem}
 .ct-title em{font-style:normal;color:var(--accent)}
 .ct-desc{font-size:.9rem;color:var(--muted);line-height:1.78;max-width:380px}
-.ct-lnks{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border)}
+.ct-lnks{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);min-width:0}
 .ct-lnk{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;background:var(--s1);text-decoration:none;color:var(--text);transition:background .3s;gap:1rem}
 .ct-lnk:hover{background:var(--s2)}
 .ct-lnk:hover .cll{color:var(--accent)}
 .ct-lnk:hover .cla{transform:translate(4px,-4px);color:var(--accent)}
-.cll{font-family:var(--fd);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;min-width:70px}
-.clv{font-size:.78rem;color:var(--muted);flex:1;text-align:right;margin-right:.5rem}
+.cll{font-family:var(--fd);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;min-width:70px;flex-shrink:0}
+/* BUG FIX: flex:1 with no min-width:0 let unbreakable text (e.g. an email address)
+   refuse to shrink, which blew out the grid column — and the whole page — wider than
+   the viewport on narrow phones. min-width:0 + wrapping lets it shrink/wrap instead. */
+.clv{font-size:.78rem;color:var(--muted);flex:1;min-width:0;overflow-wrap:break-word;word-break:break-word;text-align:right;margin-right:.5rem}
 .cla{font-size:.95rem;color:var(--muted);transition:all .3s;flex-shrink:0}
 .ct-lnk.ct-resume{border-top:1px solid rgba(201,255,87,.18)}
 .ct-lnk.ct-resume:hover{background:rgba(201,255,87,.06)}
@@ -468,7 +471,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .bc-wrap{flex:0 0 220px;margin-right:1rem}
   #services{padding:5rem 1.5rem}
   .svc-grid{grid-template-columns:1fr}
-  #contact{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3rem}
+  #contact{grid-template-columns:minmax(0,1fr);padding:5rem 1.5rem;gap:3rem}
   #devprojects{padding:5rem 1.5rem}
   .dev-grid{grid-template-columns:1fr}
   footer{padding:2rem 1.5rem}
@@ -1443,4 +1446,3 @@ document.getElementById('mobNav').addEventListener('click', e => {
 </script>
 </body>
 </html>
-
