@@ -262,23 +262,11 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .ig-count span{color:var(--accent);font-family:var(--fd);font-weight:700}
 
 /* ─── BRANDING ─── */
-#branding{padding:8rem 3rem;background:var(--s1);overflow:hidden}
-.brand-wrap{width:100%;overflow:hidden;position:relative;margin-top:4rem}
-.brand-wrap::before,.brand-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.brand-wrap::before{left:0;background:linear-gradient(to right,var(--s1),transparent)}
-.brand-wrap::after{right:0;background:linear-gradient(to left,var(--s1),transparent)}
-/* BUG FIX: flex `gap` breaks the 50% duplicate-loop math (track = 6w+5g, half = 3w+2.5g,
-   but the seam needs 3w+3g — a half-gap snap every cycle). Moving the spacing onto each
-   item as a trailing margin makes every item "own" its gap, so the track is exactly
-   6×(w+g) and translateX(-50%) lands precisely on the duplicate set — no jump. */
-.brand-track{display:flex;width:max-content;will-change:transform;animation:dwLeft 21.3s linear infinite}
-.brand-wrap:hover .brand-track{animation-play-state:paused}
-@media(prefers-reduced-motion:reduce){.brand-track{animation-play-state:paused}}
+#branding{padding:8rem 3rem;background:var(--s1)}
+.brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:4rem}
 
 /* BUG FIX: bc-wrap needs position:relative so the overlay and label work */
 .bc-wrap{
-  flex:0 0 300px;
-  margin-right:1.25rem;
   position:relative;
   text-decoration:none;
   display:block;
@@ -466,10 +454,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .prj-hdr{flex-direction:column;align-items:flex-start;padding:0 1.5rem}
   .ig-count{padding:0 1.5rem}
   #branding{padding:5rem 1.5rem}
-  /* BUG FIX: 120px edge fades ate up most of the strip on narrow phones — scale down */
-  .brand-wrap::before,.brand-wrap::after{width:48px}
-  .bc-wrap{flex:0 0 220px;margin-right:1rem}
-  .brand-track{animation-duration:15.7s}
+  .brand-grid{grid-template-columns:1fr}
   #services{padding:5rem 1.5rem}
   .svc-grid{grid-template-columns:1fr}
   #contact{grid-template-columns:minmax(0,1fr);padding:5rem 1.5rem;gap:3rem}
@@ -490,9 +475,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .hero-h{font-size:clamp(2.8rem,12vw,5rem)}
   .hero-ctas{flex-direction:column;align-items:flex-start}
   .dw-card{width:140px}
-  .bc-wrap{flex:0 0 180px;margin-right:.85rem}
-  .brand-track{animation-duration:12.9s}
-  .brand-wrap::before,.brand-wrap::after{width:32px}
+  .bc-wrap{flex:0 0 180px}
   .lb-behance{display:none}
 }
 
@@ -867,19 +850,16 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-top:1.5rem;max-width:480px">Logo design, visual identity systems, stationery and brand collateral. Click any card to view the full project on Behance.</p>
   </div>
 
-  <div class="brand-wrap reveal">
-    <div class="brand-track">
+  <div class="brand-grid reveal">
 
       <a class="bc-wrap" href="https://www.behance.net/gallery/247231533/KESHRI-ACADEMY" target="_blank" rel="noopener">
         <div class="bc">
           <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/keshri.png" alt="Keshri Academy" loading="lazy">
-          <!-- BUG FIX: bc-overlay was in HTML but never styled -->
           <div class="bc-overlay">
             <div class="bc-be-icon">Be</div>
             <div class="bc-be-txt">View on Behance</div>
           </div>
         </div>
-        <!-- BUG FIX: bc-lbl, bc-lbl-name, bc-lbl-cat, bc-lbl-arrow were all unstyled -->
         <div class="bc-lbl">
           <div>
             <div class="bc-lbl-name">Keshri Academy</div>
@@ -923,32 +903,8 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
         </div>
       </a>
 
-      <!-- duplicates for seamless marquee loop (decorative — hidden from a11y tree to avoid duplicate tab stops/SR announcements) -->
-      <a class="bc-wrap" href="https://www.behance.net/gallery/247231533/KESHRI-ACADEMY" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-        <div class="bc">
-          <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/keshri.png" alt="" loading="lazy">
-          <div class="bc-overlay"><div class="bc-be-icon">Be</div><div class="bc-be-txt">View on Behance</div></div>
-        </div>
-        <div class="bc-lbl"><div><div class="bc-lbl-name">Keshri Academy</div><span class="bc-lbl-cat">Education · Brand Identity</span></div><span class="bc-lbl-arrow">↗</span></div>
-      </a>
-      <a class="bc-wrap" href="https://www.behance.net/gallery/246996937/Kriscol" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-        <div class="bc">
-          <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/kriscol.png" alt="" loading="lazy">
-          <div class="bc-overlay"><div class="bc-be-icon">Be</div><div class="bc-be-txt">View on Behance</div></div>
-        </div>
-        <div class="bc-lbl"><div><div class="bc-lbl-name">Kriscol Roofing</div><span class="bc-lbl-cat">Roofing · Full Identity</span></div><span class="bc-lbl-arrow">↗</span></div>
-      </a>
-      <a class="bc-wrap" href="https://www.behance.net/gallery/249301889/QuickpathLogo-design" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">
-        <div class="bc">
-          <img class="bc-img" src="https://heartydj.github.io/freelancer-portfolio/QP.png" alt="" loading="lazy">
-          <div class="bc-overlay"><div class="bc-be-icon">Be</div><div class="bc-be-txt">View on Behance</div></div>
-        </div>
-        <div class="bc-lbl"><div><div class="bc-lbl-name">QuickPath</div><span class="bc-lbl-cat">Tech · Logo Design</span></div><span class="bc-lbl-arrow">↗</span></div>
-      </a>
-
-    </div>
   </div>
-  <div class="ig-count reveal"><span>3</span> branding projects &nbsp;·&nbsp; Hover to pause · Click to view on Behance</div>
+  <div class="ig-count reveal"><span>3</span> branding projects &nbsp;·&nbsp; Click any card to view on Behance</div>
 </section>
 
 <!-- ══ DEV PROJECTS ══ -->
