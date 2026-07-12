@@ -183,7 +183,7 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .abt-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2.2rem}
 .atag{padding:.38rem .95rem;border:1px solid var(--border2);font-size:.7rem;font-weight:500;letter-spacing:.06em;color:var(--muted);transition:all .3s;cursor:default}
 .atag:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-d)}
-.abt-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.abt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
 .ac{background:var(--bg);padding:2.2rem;transition:background .35s}
 .ac:hover{background:var(--s1)}
 .ac-n{font-family:var(--fd);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
@@ -372,25 +372,7 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .ct-lnk.ct-resume .cla{color:var(--accent)}
 
 /* ─── DEV PROJECTS ─── */
-#devprojects{padding:8rem 3rem}
-.dev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:4rem}
-.dev-card{background:var(--bg);padding:2.4rem;position:relative;overflow:hidden;transition:background .35s;display:flex;flex-direction:column;gap:1.2rem}
-.dev-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent);transition:height .4s var(--r-ease)}
-.dev-card:hover{background:var(--s1)}
-.dev-card:hover::before{height:100%}
-.dev-num{font-family:var(--fd);font-size:.62rem;font-weight:700;letter-spacing:.22em;color:var(--accent)}
-.dev-name{font-family:var(--fd);font-size:1.2rem;font-weight:800;letter-spacing:-0.025em;line-height:1.1;color:var(--text);transition:color .3s}
-.dev-card:hover .dev-name{color:var(--accent)}
-.dev-desc{font-size:.8rem;color:var(--muted);line-height:1.72;flex:1}
-.dev-stack{display:flex;flex-wrap:wrap;gap:.4rem}
-.dev-tag{padding:.22rem .65rem;border:1px solid var(--border2);font-size:.62rem;font-weight:500;letter-spacing:.06em;color:var(--muted);transition:border-color .3s,color .3s}
-.dev-card:hover .dev-tag{border-color:rgba(201,255,87,.3);color:var(--accent)}
-.dev-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem}
-.dev-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.52rem 1.1rem;font-family:var(--fd);font-size:.65rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .3s;border:1px solid}
-.dev-btn-live{background:var(--accent);color:#080808;border-color:var(--accent)}
-.dev-btn-live:hover{box-shadow:0 0 24px rgba(201,255,87,.35)}
-.dev-btn-gh{background:transparent;color:var(--muted);border-color:var(--border2)}
-.dev-btn-gh:hover{border-color:var(--accent);color:var(--accent)}
+
 
 /* ─── FOOTER ─── */
 footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);flex-wrap:wrap;gap:1.2rem}
@@ -439,7 +421,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   .hero-card{display:none}
   .scroll-ind{display:none}
   .exp-layout{grid-template-columns:1fr;gap:3rem}
-  .dev-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   nav{padding:1.25rem 1.5rem}
@@ -458,8 +439,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   #services{padding:5rem 1.5rem}
   .svc-grid{grid-template-columns:1fr}
   #contact{grid-template-columns:minmax(0,1fr);padding:5rem 1.5rem;gap:3rem}
-  #devprojects{padding:5rem 1.5rem}
-  .dev-grid{grid-template-columns:1fr}
   footer{padding:2rem 1.5rem}
   #experience{padding:5rem 1.5rem}
   .lb-img-wrap{padding:4rem 2.5rem 1rem}
@@ -513,7 +492,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Work</a></li>
     <li><a href="#branding">Branding</a></li>
-    <li><a href="#devprojects">Dev</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
@@ -529,7 +507,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   <a href="#skills" onclick="closeMob()">Skills</a>
   <a href="#projects" onclick="closeMob()">Work</a>
   <a href="#branding" onclick="closeMob()">Branding</a>
-  <a href="#devprojects" onclick="closeMob()">Dev</a>
   <a href="#services" onclick="closeMob()">Services</a>
   <a href="#contact" onclick="closeMob()">Connect</a>
 </div>
@@ -546,7 +523,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   <div class="scroll-ind" id="scrollInd"><div class="scroll-ln"></div>Scroll</div>
 
   <div class="hero-left">
-    <div class="hero-tag" id="heroTag">Graphic Designer &amp; Creative Developer</div>
+    <div class="hero-tag" id="heroTag">Graphic Designer &amp; Visual Creator</div>
     <h1 class="hero-h" id="heroH">
       <span class="hl"><span>I Craft</span></span>
       <span class="hl"><span>Visuals</span></span>
@@ -598,6 +575,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
         <a href="https://www.linkedin.com/in/dharani-jayan-e-6544432b7" target="_blank" class="hc-soc">LI</a>
         <a href="https://www.behance.net/dj014" target="_blank" class="hc-soc">BE</a>
         <a href="mailto:dharanijayan@gmail.com" class="hc-soc">@</a>
+        <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" rel="noopener" class="hc-soc">IG</a>
       </div>
     </div>
   </div>
@@ -607,12 +585,12 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
 <section id="about">
   <div class="reveal">
     <div class="slabel">About Me</div>
-    <h2 class="abt-title">Designer<br><em>&amp;</em><br>Developer</h2>
+    <h2 class="abt-title">Designer<br><em>&amp;</em><br>Brand Strategist</h2>
     <p class="abt-txt">I'm a creative professional at the intersection of <strong>design and technology</strong>. Pursuing B.Tech in Information Technology at Velalar College of Engineering &amp; Technology.</p>
-    <p class="abt-txt">My work spans <strong>Graphic design</strong>, UI/UX composition, and front-end development — blending user-centred thinking with visual precision to craft meaningful digital experiences.</p>
+    <p class="abt-txt">My work spans <strong>Graphic design</strong>, UI/UX composition, and visual storytelling — blending user-centred thinking with aesthetic precision to craft meaningful digital experiences.</p>
     <div class="abt-tags">
       <span class="atag">Logo Design</span><span class="atag">Branding</span><span class="atag">Visual Identity</span>
-      <span class="atag">Web Design</span><span class="atag">UI/UX Design</span><span class="atag">Frontend Dev</span>
+      <span class="atag">Web Design</span><span class="atag">UI/UX Design</span>
     </div>
   </div>
   <div class="reveal d2">
@@ -620,7 +598,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       <div class="ac"><div class="ac-n">UI/UX</div><div class="ac-t">User Experience</div><div class="ac-d">Crafting intuitive interfaces that guide users seamlessly through digital spaces.</div></div>
       <div class="ac"><div class="ac-n">Logo</div><div class="ac-t">Logo Design</div><div class="ac-d">Creating memorable and impactful logos that represent brands effectively.</div></div>
       <div class="ac"><div class="ac-n">Brand</div><div class="ac-t">Visual Identity</div><div class="ac-d">Building cohesive brand systems that resonate deeply and endure with time.</div></div>
-      <div class="ac"><div class="ac-n">Code</div><div class="ac-t">Frontend Dev</div><div class="ac-d">Bringing designs to life with clean, performant, and semantic code.</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -688,14 +666,14 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <p class="sk-sub">A curated set of tools and technologies I wield to create premium digital experiences.</p>
   </div>
   <div class="sk-grid">
-    <div class="skc reveal" data-w="0.95"><span class="sk-ico">⬡</span><div class="sk-nm">HTML/CSS</div><div class="sk-cat">Markup/Styling</div><div class="sk-bw"><div class="sk-b"></div></div></div>
-    <div class="skc reveal d3" data-w="0.82"><span class="sk-ico">◇</span><div class="sk-nm">JavaScript</div><div class="sk-cat">Language</div><div class="sk-bw"><div class="sk-b"></div></div></div>
-    <div class="skc reveal d4" data-w="0.94"><span class="sk-ico">▣</span><div class="sk-nm">Photoshop</div><div class="sk-cat">Adobe Suite</div><div class="sk-bw"><div class="sk-b"></div></div></div>
+    <div class="skc reveal d3" data-w="0.94"><span class="sk-ico">▣</span><div class="sk-nm">Photoshop</div><div class="sk-cat">Adobe Suite</div><div class="sk-bw"><div class="sk-b"></div></div></div>
     <div class="skc reveal" data-w="0.90"><span class="sk-ico">◉</span><div class="sk-nm">Illustrator</div><div class="sk-cat">Adobe Suite</div><div class="sk-bw"><div class="sk-b"></div></div></div>
     <div class="skc reveal d2" data-w="0.93"><span class="sk-ico">⬟</span><div class="sk-nm">Figma</div><div class="sk-cat">Design Tool</div><div class="sk-bw"><div class="sk-b"></div></div></div>
     <div class="skc reveal d3" data-w="0.88"><span class="sk-ico">◎</span><div class="sk-nm">CorelDraw</div><div class="sk-cat">Design Tool</div><div class="sk-bw"><div class="sk-b"></div></div></div>
     <div class="skc reveal d2" data-w="0.92"><span class="sk-ico">◈</span><div class="sk-nm">Canva</div><div class="sk-cat">Design Tool</div><div class="sk-bw"><div class="sk-b"></div></div></div>
     <div class="skc reveal d3" data-w="0.88"><span class="sk-ico">◎</span><div class="sk-nm">Capcut</div><div class="sk-cat">Video Editing</div><div class="sk-bw"><div class="sk-b"></div></div></div>
+    <div class="skc reveal d3" data-w="0.94"><span class="sk-ico">▣</span><div class="sk-nm">Brand Strategy</div><div class="sk-cat">Marketing</div><div class="sk-bw"><div class="sk-b"></div></div></div>
+    <div class="skc reveal" data-w="0.95"><span class="sk-ico">⬡</span><div class="sk-nm">HTML/CSS</div><div class="sk-cat">Markup/Styling</div><div class="sk-bw"><div class="sk-b"></div></div></div>
   </div>
 </section>
 
@@ -907,76 +885,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
   <div class="ig-count reveal"><span>3</span> branding projects &nbsp;·&nbsp; Click any card to view on Behance</div>
 </section>
 
-<!-- ══ DEV PROJECTS ══ -->
-<section id="devprojects">
-  <div class="reveal">
-    <div class="slabel">Development</div>
-    <h2 style="font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,4.5rem);font-weight:800;letter-spacing:-0.04em;line-height:.92">Dev<br>Projects</h2>
-    <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-top:1.5rem;max-width:480px">Frontend projects built with clean HTML, CSS &amp; JavaScript. Click Live to see them in action.</p>
-  </div>
-  <div class="dev-grid">
-    <div class="dev-card reveal d2">
-      <div class="dev-num">01</div>
-      <div class="dev-name">Personal Portfolio</div>
-      <p class="dev-desc">Responsive portfolio with smooth interactions, lightbox gallery, and modern UI.</p>
-      <div class="dev-stack"><span class="dev-tag">HTML</span><span class="dev-tag">CSS</span><span class="dev-tag">JavaScript</span></div>
-      <div class="dev-actions">
-        <a href="https://heartydj.github.io/Personal-Portfolio/" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-        <a href="https://github.com/heartydj/Personal-Portfolio" target="_blank" class="dev-btn dev-btn-gh">GitHub</a>
-      </div>
-    </div>
-    <div class="dev-card reveal d3">
-      <div class="dev-num">02</div>
-      <div class="dev-name">BudgetWise</div>
-      <p class="dev-desc">Smart budget tracking app with expense categorisation and visual analytics.</p>
-      <div class="dev-stack"><span class="dev-tag">HTML</span><span class="dev-tag">CSS</span><span class="dev-tag">JavaScript</span></div>
-      <div class="dev-actions">
-        <a href="https://heartydj.github.io/BudgetWise/" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-        <a href="https://github.com/heartydj/BudgetWise" target="_blank" class="dev-btn dev-btn-gh">GitHub</a>
-      </div>
-    </div>
-    <div class="dev-card reveal d4">
-      <div class="dev-num">03</div>
-      <div class="dev-name">Scholarship Portal</div>
-      <p class="dev-desc">Comprehensive scholarship management with OCR capabilities and community detection.</p>
-      <div class="dev-stack"><span class="dev-tag">HTML</span><span class="dev-tag">CSS</span><span class="dev-tag">JavaScript</span></div>
-      <div class="dev-actions">
-        <a href="https://heartydj.github.io/Scholarship-portal/" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-        <a href="https://github.com/heartydj/Scholarship-portal" target="_blank" class="dev-btn dev-btn-gh">GitHub</a>
-      </div>
-    </div>
-    <div class="dev-card reveal d2">
-      <div class="dev-num">04</div>
-      <div class="dev-name">To-Do List App</div>
-      <p class="dev-desc">Feature-rich task management with local storage persistence and smooth animations.</p>
-      <div class="dev-stack"><span class="dev-tag">HTML</span><span class="dev-tag">CSS</span><span class="dev-tag">JavaScript</span></div>
-      <div class="dev-actions">
-        <a href="https://heartydj.github.io/To-Do-list/" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-        <a href="https://github.com/heartydj/to-do-list" target="_blank" class="dev-btn dev-btn-gh">GitHub</a>
-      </div>
-    </div>
-    <div class="dev-card reveal d3">
-      <div class="dev-num">05</div>
-      <div class="dev-name">Guessing Game</div>
-      <p class="dev-desc">Interactive number guessing game with a clean UI and an engaging, fun experience.</p>
-      <div class="dev-stack"><span class="dev-tag">HTML</span><span class="dev-tag">CSS</span><span class="dev-tag">JavaScript</span></div>
-      <div class="dev-actions">
-        <a href="https://heartydj.github.io/numberguess/" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-        <a href="https://github.com/heartydj/numberguess" target="_blank" class="dev-btn dev-btn-gh">GitHub</a>
-      </div>
-    </div>
-    <div class="dev-card reveal d4">
-      <div class="dev-num">06</div>
-      <div class="dev-name">Load Locator</div>
-      <p class="dev-desc">Figma UI/UX prototype for heavy vehicle drivers — load tracking and route optimisation.</p>
-      <div class="dev-stack"><span class="dev-tag">Figma</span><span class="dev-tag">UI/UX</span><span class="dev-tag">Prototype</span></div>
-      <div class="dev-actions">
-        <a href="https://www.figma.com/proto/68xRhZQHSyKubQW7lTw0eS/load-truck?page-id=0%3A1&node-id=44-49" target="_blank" class="dev-btn dev-btn-live">Live ↗</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ SERVICES ══ -->
 <section id="services">
   <div class="reveal">
@@ -1003,9 +911,9 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       <div class="svc-arr">↗</div>
     </div>
     <div class="svc reveal d4">
-      <div class="svc-num">04</div><h3 class="svc-t">Frontend Development</h3>
-      <p class="svc-d">Building fast, responsive, and visually stunning websites — semantic HTML/CSS/JS with smooth animations and obsessive attention to detail.</p>
-      <div class="svc-tags"><span class="svc-tag">HTML/CSS/JS</span><span class="svc-tag">Responsive</span><span class="svc-tag">Animations</span></div>
+      <div class="svc-num">04</div><h3 class="svc-t">Poster Design</h3>
+      <p class="svc-d">Designing high-impact posters, editorial layouts, and print collateral — bold typography, dramatic compositions, and premium visual storytelling.</p>
+      <div class="svc-tags"><span class="svc-tag">Poster Design</span><span class="svc-tag">Editorial</span></div>
       <div class="svc-arr">↗</div>
     </div>
   </div>
@@ -1023,6 +931,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       <a href="mailto:dharanijayan@gmail.com" class="ct-lnk"><span class="cll">Email</span><span class="clv">dharanijayan@gmail.com</span><span class="cla">↗</span></a>
       <a href="tel:+917358987445" class="ct-lnk"><span class="cll">Phone</span><span class="clv">+91 73589 87445</span><span class="cla">↗</span></a>
       <a href="https://www.linkedin.com/in/dharani-jayan-e-6544432b7" target="_blank" class="ct-lnk"><span class="cll">LinkedIn</span><span class="clv">dharani-jayan-e</span><span class="cla">↗</span></a>
+      <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" rel="noopener" class="ct-lnk"><span class="cll">Instagram</span><span class="clv">@dharani.designss</span><span class="cla">↗</span></a>
       <a href="https://www.behance.net/dj014" target="_blank" class="ct-lnk"><span class="cll">Behance</span><span class="clv">behance.net/dj014</span><span class="cla">↗</span></a>
       <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" class="ct-lnk"><span class="cll">Instagram</span><span class="clv">dharani.designss</span><span class="cla">↗</span></a>
       <a href="https://heartydj.github.io/freelancer-portfolio/DHARANI%20JAYAN%20RESUME.pdf" download class="ct-lnk ct-resume"><span class="cll">Resume</span><span class="clv">Download PDF</span><span class="cla">↓</span></a>
@@ -1040,7 +949,7 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
     <a href="https://github.com/heartydj" target="_blank" class="ft-sl">GH</a>
     <a href="https://www.behance.net/dj014" target="_blank" class="ft-sl">BE</a>
     <a href="mailto:dharanijayan@gmail.com" class="ft-sl">@</a>
-    <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" class="ft-sl">in</a>
+    <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" class="ft-sl">IG</a>
   </div>
   <a href="#hero" class="to-top">↑</a>
 </footer>
@@ -1205,7 +1114,7 @@ if (!isTouch) {
 
   /* hover targets */
   const hoverEls = document.querySelectorAll(
-    'a,button,.skc,.svc,.atag,.hero-card,.dw-card,.bc-wrap,.dev-card'
+    'a,button,.skc,.svc,.atag,.hero-card,.dw-card,.bc-wrap'
   );
   hoverEls.forEach(el => {
     el.addEventListener('mouseenter', () => { cRing.classList.add('hov'); cDot.classList.add('hov'); });
