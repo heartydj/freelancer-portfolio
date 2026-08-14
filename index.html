@@ -79,13 +79,7 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 .d2{transition-delay:.12s}.d3{transition-delay:.24s}.d4{transition-delay:.36s}.d5{transition-delay:.48s}.d6{transition-delay:.6s}.d7{transition-delay:.72s}.d8{transition-delay:.84s}
 
 /* ─── HERO ─── */
-#hero{
-  min-height:100svh;display:grid;
-  grid-template-columns:1fr auto;
-  align-items:end;
-  padding:0 3rem 5rem;
-  position:relative;overflow:hidden;gap:3rem
-}
+#hero{min-height:100svh;display:grid;grid-template-columns:1fr auto;align-items:end;padding:0 clamp(1.25rem,4vw,3rem) 5rem;position:relative;overflow:hidden;gap:clamp(1.5rem,3vw,3rem)}
 .hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:0;will-change:transform}
 .orb1{width:600px;height:600px;top:-200px;left:-100px;background:radial-gradient(circle,rgba(201,255,87,.28) 0%,transparent 70%);animation:orbf1 10s ease-in-out infinite}
@@ -134,9 +128,9 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 
 /* ─── HERO CARD ─── */
 .hero-card{
-  width:300px;flex-shrink:0;opacity:0;
+  width:clamp(230px,26vw,300px);flex-shrink:0;opacity:0;
   background:var(--s1);border:1px solid var(--border2);
-  overflow:visible;position:relative;
+  overflow:hidden;position:relative;
   align-self:end;transform-style:preserve-3d;
   transition:box-shadow .4s;will-change:transform;
 }
@@ -150,8 +144,8 @@ nav.scrolled{background:rgba(8,8,8,.92);backdrop-filter:blur(24px)}
 }
 .hero-card:hover::before{top:-20px;right:-20px;border-color:var(--accent)}
 .hero-card:hover{box-shadow:0 24px 80px rgba(0,0,0,.5),0 0 60px rgba(201,255,87,.08)}
-.hc-img{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden}
-.hc-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(15%) contrast(1.06);transition:transform .7s var(--r-ease),filter .5s}
+.hc-img{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;min-height:0}
+.hc-img img{width:100%;height:100%;object-fit:cover;object-position:top 10%;display:block;filter:grayscale(15%) contrast(1.06);transition:transform .7s var(--r-ease),filter .5s}
 .hero-card:hover .hc-img img{transform:scale(1.04);filter:grayscale(0%) contrast(1.1)}
 .hc-img-glow{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to top,var(--s1) 0%,transparent 100%);pointer-events:none}
 /* BUG FIX: fallback uses display:flex via ::after pseudo — add display:flex to element */
@@ -413,49 +407,168 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
 .lb-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:1200px){
-  .sk-grid{grid-template-columns:repeat(2,1fr)}
+
+/* 1280 */
+@media(max-width:1280px){
+  .hero-card{width:clamp(220px,24vw,270px)}
 }
+
+/* 1024 — tablet landscape: stack hero, show card horizontal */
 @media(max-width:1024px){
-  #hero{grid-template-columns:1fr;padding-bottom:4rem}
-  .hero-card{display:none}
+  #hero{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    padding:6rem 2rem 4rem;
+    gap:2.5rem;
+    align-items:start;
+  }
+  .hero-left{order:1}
+  .hero-card{
+    order:2;
+    display:flex !important;
+    flex-direction:row;
+    width:100%;
+    max-width:540px;
+    opacity:1 !important;
+    align-self:auto;
+    overflow:hidden;
+  }
+  .hc-img{
+    width:200px;
+    min-width:200px;
+    max-width:200px;
+    aspect-ratio:unset;
+    height:auto;
+    align-self:stretch;
+  }
+  .hc-img img{height:100%;object-position:top center}
+  .hc-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:1.2rem 1.3rem}
+  .hero-card::before{display:none}
   .scroll-ind{display:none}
   .exp-layout{grid-template-columns:1fr;gap:3rem}
-}
-@media(max-width:768px){
-  nav{padding:1.25rem 1.5rem}
-  .nav-ul,.nav-avl{display:none}
-  .hbg{display:flex}
-  #hero{padding:0 1.5rem 4rem;min-height:100svh}
-  #about{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3.5rem}
-  #about::before{display:none}
-  #skills{padding:5rem 1.5rem}
   .sk-grid{grid-template-columns:repeat(2,1fr)}
-  #projects{padding:5rem 0}
-  .prj-hdr{flex-direction:column;align-items:flex-start;padding:0 1.5rem}
-  .ig-count{padding:0 1.5rem}
-  #branding{padding:5rem 1.5rem}
-  .brand-grid{grid-template-columns:1fr}
-  #services{padding:5rem 1.5rem}
-  .svc-grid{grid-template-columns:1fr}
-  #contact{grid-template-columns:minmax(0,1fr);padding:5rem 1.5rem;gap:3rem}
-  footer{padding:2rem 1.5rem}
-  #experience{padding:5rem 1.5rem}
-  .lb-img-wrap{padding:4rem 2.5rem 1rem}
-  .lb-info{padding:1rem 1.5rem 1.2rem;flex-direction:column;align-items:flex-start}
-  .lb-thumbs{padding:0 1.5rem 1.2rem}
-  .lb-prev{left:.4rem}
-  .lb-next{right:.4rem}
-  .lb-arrow{width:40px;height:40px}
 }
+
+/* 768 — tablet portrait / large phone */
+@media(max-width:768px){
+  nav{padding:1.1rem 1.25rem}
+  .nav-ul,.nav-avl,.nav-resume{display:none}
+  .hbg{display:flex}
+  /* hero */
+  #hero{padding:5.5rem 1.25rem 3rem;gap:2rem;min-height:100svh}
+  .hero-tag{font-size:.62rem;margin-bottom:1rem}
+  .hero-h{margin-bottom:1.8rem}
+  .hero-card{
+    flex-direction:row;
+    max-width:100%;
+    width:100%;
+  }
+  .hc-img{width:150px;min-width:150px;max-width:150px}
+  .hc-body{padding:1rem;gap:.5rem}
+  .hc-avail{font-size:.56rem;margin-bottom:.3rem}
+  .hc-name{font-size:.9rem;margin-bottom:.2rem}
+  .hc-role{font-size:.64rem;margin-bottom:.5rem}
+  .hc-divider{margin-bottom:.5rem}
+  .hc-stats{margin-bottom:.5rem}
+  .hc-stat{padding:.28rem 0}
+  .hc-stat-n{font-size:.8rem}
+  .hc-stat-l{font-size:.5rem}
+  .hc-soc{height:28px;font-size:.52rem}
+  .hero-stats{gap:1.5rem;margin-top:1.5rem;padding-top:1.5rem}
+  /* about */
+  #about{grid-template-columns:1fr;padding:4.5rem 1.25rem;gap:3rem}
+  #about::before{display:none}
+  /* skills */
+  #skills{padding:4.5rem 1.25rem}
+  .sk-hdr{margin-bottom:2.5rem}
+  .sk-grid{grid-template-columns:repeat(2,1fr)}
+  /* projects */
+  #projects{padding:4.5rem 0}
+  .prj-hdr{flex-direction:column;align-items:flex-start;padding:0 1.25rem;gap:1.2rem}
+  .ig-count{padding:0 1.25rem}
+  .prj-grid{grid-template-columns:1fr 1fr}
+  /* branding */
+  #branding{padding:4.5rem 1.25rem}
+  .brand-grid{grid-template-columns:repeat(2,1fr);gap:.875rem}
+  /* services */
+  #services{padding:4.5rem 1.25rem}
+  .svc-grid{grid-template-columns:1fr}
+  /* contact */
+  #contact{grid-template-columns:1fr;padding:4.5rem 1.25rem;gap:3rem}
+  footer{padding:1.75rem 1.25rem;gap:1rem}
+  #experience{padding:4.5rem 1.25rem}
+  /* lightbox */
+  .lb-img-wrap{padding:3.5rem 2rem 1rem}
+  .lb-info{padding:1rem 1.25rem 1.2rem;flex-direction:column;align-items:flex-start;gap:.75rem}
+  .lb-thumbs{padding:0 1.25rem 1rem}
+  .lb-prev{left:.3rem}
+  .lb-next{right:.3rem}
+  .lb-arrow{width:38px;height:38px;font-size:.95rem}
+}
+
+/* 540 — small phone landscape / mid phone portrait */
+@media(max-width:540px){
+  .hero-card{
+    flex-direction:column;
+    max-width:300px;
+    width:100%;
+    margin:0 auto;
+  }
+  .hc-img{
+    width:100%;
+    min-width:unset;
+    max-width:unset;
+    aspect-ratio:4/3;
+    height:auto;
+  }
+  .hc-img img{height:100%;object-position:top center}
+  .hc-body{
+    display:grid;
+    grid-template-columns:1fr;
+    padding:1rem 1.1rem;
+    gap:.45rem;
+    justify-content:start;
+  }
+  .hc-divider{margin-bottom:.4rem}
+  .hc-stats{margin-bottom:.4rem}
+}
+
+/* 480 — standard small phone */
 @media(max-width:480px){
-  .sk-grid{grid-template-columns:1fr}
-  .abt-cards{grid-template-columns:1fr}
-  .hero-h{font-size:clamp(2.8rem,12vw,5rem)}
-  .hero-ctas{flex-direction:column;align-items:flex-start}
+  nav{padding:.9rem 1rem}
+  #hero{padding:5rem 1rem 2.5rem;gap:1.5rem}
+  .hero-h{font-size:clamp(2.5rem,13vw,4.5rem);margin-bottom:1.4rem}
+  .hero-desc{font-size:.84rem;max-width:100%}
+  .hero-ctas{flex-direction:column;align-items:stretch;gap:.6rem}
+  .hero-ctas .btn-p,.hero-ctas .btn-o,.hero-ctas .btn-dl{
+    width:100%;justify-content:center;padding:.8rem 1.2rem
+  }
+  .hero-stats{gap:1.25rem;padding-top:1.25rem;margin-top:1.25rem}
+  .stat-n{font-size:1.6rem}
+  .stat-l{font-size:.55rem}
+  .hero-card{max-width:100%}
+  .hc-img{aspect-ratio:16/9}
+  .sk-grid{grid-template-columns:repeat(2,1fr)}
+  .abt-cards{grid-template-columns:1fr 1fr}
+  .abt-title{font-size:clamp(2rem,10vw,3.2rem)}
+  .brand-grid{grid-template-columns:1fr 1fr}
+  .svc-grid{grid-template-columns:1fr}
   .dw-card{width:140px}
-  .bc-wrap{flex:0 0 180px}
+  footer{flex-direction:column;align-items:flex-start;gap:.85rem}
   .lb-behance{display:none}
+  .lb-title{font-size:.88rem}
+}
+
+/* 360 — very small phones */
+@media(max-width:360px){
+  #hero{padding:4.5rem .85rem 2rem}
+  .hero-h{font-size:clamp(2.2rem,14vw,3.5rem)}
+  .hc-img{aspect-ratio:3/2}
+  .hc-stat-n{font-size:.72rem}
+  .hc-stat-l{font-size:.48rem}
+  .sk-grid{grid-template-columns:1fr}
+  .brand-grid{grid-template-columns:1fr}
+  .abt-cards{grid-template-columns:1fr}
 }
 
 /* ─── SCROLLBAR ─── */
@@ -641,6 +754,13 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
         <div class="edu-school">Velalar College of Engineering &amp; Technology</div>
         <div class="edu-meta"><span>Erode, Tamil Nadu</span></div>
         <div class="edu-badge">GPA: 7.9 ✦</div>
+      </div>
+      <div class="edu-item">
+        <div class="exp-date">Jun 2021 — May 2022</div>
+        <div class="edu-deg">Higher Secondary Education</div>
+        <div class="edu-school">Sri Venkateswara Vidyalaya Higher Secondary School</div>
+        <div class="edu-meta"><span>Gobi, Tamil Nadu</span></div>
+        <div class="edu-badge">GPA: 7.8 ✦</div>
       </div>
       <div class="exp-col-title" style="margin-top:2.5rem">Certifications &amp; Skills</div>
       <div class="exp-item">
@@ -950,7 +1070,6 @@ footer{padding:2.5rem 3rem;display:flex;align-items:center;justify-content:space
       <a href="mailto:dharanijayan@gmail.com" class="ct-lnk"><span class="cll">Email</span><span class="clv">dharanijayan@gmail.com</span><span class="cla">↗</span></a>
       <a href="tel:+917358987445" class="ct-lnk"><span class="cll">Phone</span><span class="clv">+91 73589 87445</span><span class="cla">↗</span></a>
       <a href="https://www.linkedin.com/in/dharani-jayan-e-6544432b7" target="_blank" class="ct-lnk"><span class="cll">LinkedIn</span><span class="clv">dharani-jayan-e</span><span class="cla">↗</span></a>
-      <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" rel="noopener" class="ct-lnk"><span class="cll">Instagram</span><span class="clv">@dharani.designss</span><span class="cla">↗</span></a>
       <a href="https://www.behance.net/dj014" target="_blank" class="ct-lnk"><span class="cll">Behance</span><span class="clv">behance.net/dj014</span><span class="cla">↗</span></a>
       <a href="https://www.instagram.com/dharani.designss?igsh=Y2YzczJhaHJtMzR4" target="_blank" class="ct-lnk"><span class="cll">Instagram</span><span class="clv">dharani.designss</span><span class="cla">↗</span></a>
       <a href="https://heartydj.github.io/freelancer-portfolio/DHARANI%20JAYAN%20RESUME.pdf" download class="ct-lnk ct-resume"><span class="cll">Resume</span><span class="clv">Download PDF</span><span class="cla">↓</span></a>
@@ -1059,7 +1178,7 @@ function startHero() {
   gsap.to(lines, { y: '0%', duration: 1.3, stagger: .14, ease: 'power4.out', delay: .1 });
   gsap.to('#heroTag',   { opacity: 1, y: 0, duration: .9, delay: .5,  ease: 'power3.out' });
   gsap.to('#heroBtm',   { opacity: 1, y: 0, duration: .9, delay: .75, ease: 'power3.out' });
-  gsap.to('#heroPhoto', { opacity: 1, x: 0, duration: 1.1, delay: .6, ease: 'power3.out' });
+  if(window.innerWidth>1024){gsap.set('#heroPhoto',{x:50,opacity:0});gsap.to('#heroPhoto',{opacity:1,x:0,duration:1.1,delay:.6,ease:'power3.out'});}else{document.getElementById('heroPhoto').style.opacity='1';}
   gsap.to('#scrollInd', { opacity: 1, duration: 1, delay: 1.6 });
 
   /* parallax on scroll */
@@ -1145,7 +1264,7 @@ if (!isTouch) {
    HERO CARD TILT
 ──────────────────────────────────── */
 const hCard = document.getElementById('heroPhoto');
-if (hCard && !isTouch) {
+if (hCard && !isTouch && window.innerWidth > 1024) {
   hCard.addEventListener('mousemove', e => {
     const r = hCard.getBoundingClientRect();
     const x = ((e.clientX - r.left)  / r.width  - .5) *  18;
