@@ -307,6 +307,26 @@ footer a{display:inline-block;padding:8px 0}
   .fold:active .papers img:nth-child(3){transform:translate(34%,-6%) rotate(12deg)}
 }
 #experience h2{text-wrap:balance}
+
+/* ---- mobile fixes ---- */
+.mqw{overflow:hidden;padding:20px 0}
+.mq{margin:0 -10px}
+.mbtn,.mmenu{display:none}
+@supports (height:100svh){#hero{min-height:100svh}}
+@media(hover:none),(max-width:900px){
+  nav .logo,nav ul,.mbtn{background:#f1ede4;backdrop-filter:none;box-shadow:0 4px 18px rgba(0,0,0,.16);border:1px solid rgba(17,17,17,.08)}
+}
+@media(max-width:700px){
+  nav ul{display:none}
+  .mbtn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:9px 20px;font:inherit;font-size:.85rem;font-weight:600;color:var(--ink);cursor:pointer;min-height:40px}
+  .mmenu{position:fixed;inset:0;z-index:49;display:flex;flex-direction:column;gap:2px;padding:84px 28px 32px;overflow-y:auto;overscroll-behavior:contain;background:var(--ink);color:var(--paper);transform:translateY(-100%);visibility:hidden;transition:transform .55s cubic-bezier(.76,0,.24,1),visibility 0s .55s}
+  .mmenu.on{transform:none;visibility:visible;transition:transform .55s cubic-bezier(.76,0,.24,1),visibility 0s}
+  .mmenu a:first-child{margin-top:auto}
+  .mmenu a:last-child{margin-bottom:auto}
+  .mmenu a{font-size:clamp(1.6rem,min(12vw,8.5vh),3.6rem);font-weight:800;letter-spacing:-.04em;line-height:1.12;padding:4px 0;color:var(--paper)}
+  .mmenu a:active{color:var(--acc)}
+  .script{font-size:9.4vw;white-space:nowrap;margin-top:-.45em}
+}
 </style>
 </head>
 <body class="loading">
@@ -316,7 +336,9 @@ footer a{display:inline-block;padding:8px 0}
 <nav>
   <a href="#hero" class="logo">DJ.</a>
   <ul><li><a href="#work">Work</a></li><li><a href="#brands">Brands</a></li><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li></ul>
+  <button class="mbtn" aria-expanded="false" aria-controls="mmenu">Menu</button>
 </nav>
+<div id="mmenu" class="mmenu"><a href="#work">Work</a><a href="#brands">Brands</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></div>
 
 <header id="hero">
   <div class="wall dim" aria-hidden="true"><img src="458.jpg" alt="" decoding="async"><img src="marshall.jpg" alt="" decoding="async"><img src="camaro.jpg" alt="" decoding="async"><img src="cr7.jpg" alt="" decoding="async"><img src="apple.jpg" alt="" decoding="async"><img src="dis_face.jpg" alt="" decoding="async"><img src="frost.jpg" alt="" decoding="async"><img src="lh44.jpg" alt="" decoding="async"><img src="ferrari.jpg" alt="" decoding="async"><img src="vini.jpg" alt="" decoding="async"><img src="lm10.jpg" alt="" decoding="async"><img src="bmw-m4.jpg" alt="" decoding="async"><img src="lamborghini.jpg" alt="" decoding="async"><img src="gt3-rs.jpg" alt="" decoding="async"><img src="ford.jpg" alt="" decoding="async"><img src="njr.jpg" alt="" decoding="async"><img src="srt.jpg" alt="" decoding="async"><img src="ly.jpg" alt="" decoding="async"></div>
@@ -330,7 +352,7 @@ footer a{display:inline-block;padding:8px 0}
   <div class="base fu" style="--d:9"><div>Based in<b>📍 Tamil Nadu, India</b></div><div>Move your cursor — light up the wall</div></div>
 </header>
 
-<div class="mq"><div id="mq"></div></div>
+<div class="mqw"><div class="mq"><div id="mq"></div></div></div>
 
 <section id="work"><div class="wrap">
   <div class="work-head">
@@ -551,10 +573,18 @@ jr.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||!overflows())r
 addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-dx;if(!dragged&&Math.abs(d)>6){dragged=true;jr.classList.add('drag');jr.style.scrollSnapType='none'}if(dragged)jr.scrollLeft=sl-d});
 addEventListener('pointerup',()=>{if(!down)return;down=false;jr.classList.remove('drag');jr.style.scrollSnapType='';setTimeout(()=>dragged=false,60)});
 let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>centerOn(xa,false),150)});
+// mobile menu
+const mb=document.querySelector('.mbtn'),mm=document.getElementById('mmenu');
+const setMenu=on=>{mm.classList.toggle('on',on);mb.setAttribute('aria-expanded',on);mb.textContent=on?'Close':'Menu';document.body.classList.toggle('lockscroll',on)};
+mb.onclick=()=>setMenu(!mm.classList.contains('on'));
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+addEventListener('resize',()=>{if(innerWidth>700&&mm.classList.contains('on'))setMenu(false)});
 // loader
 const ld=document.getElementById('loader'),ln=document.getElementById('ldn'),lw=document.getElementById('ldw'),lbar=document.getElementById('ldb');
 const ws=['Brands','Posters','Visuals','Ready.'];const t0=performance.now();
-const go=()=>{ld.classList.add('done');document.body.classList.remove('loading');document.body.classList.add('ready');setTimeout(()=>ld.remove(),1500)};
+let went=false;const go=()=>{if(went)return;went=true;ld.classList.add('done');document.body.classList.remove('loading');document.body.classList.add('ready');setTimeout(()=>ld.remove(),1500)};
+setTimeout(go,6500);
 (function tick(now){
   const p=Math.min(((now||performance.now())-t0)/2400,1),n=Math.round(100*(1-Math.pow(1-p,2.2)));
   ln.textContent=n;lbar.style.width=n+'%';lw.textContent=ws[Math.min(3,Math.floor(n/25))];lw.classList.toggle('fin',n===100);
