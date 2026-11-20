@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var d=document.documentElement,m=window.matchMedia,c=navigator.connection,
+lite=m('(hover:none)').matches||m('(pointer:coarse)').matches||innerWidth<=900||m('(prefers-reduced-motion:reduce)').matches||!!(c&&c.saveData)||(navigator.deviceMemory&&navigator.deviceMemory<=2)||(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=2);
+d.classList.add(lite?'lite':'full')})();</script>
 <title>Dharani Jayan — Graphic Designer</title>
 <meta name="description" content="Dharani Jayan — graphic designer crafting brand identities, posters and digital visuals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +14,7 @@
 <style>
 :root{--paper:#f1ede4;--ink:#111;--acc:#ff4b2b;--mute:#6d6a62;--sans:'Bricolage Grotesque',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.5;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
@@ -23,9 +26,10 @@ h2 em{color:var(--acc);letter-spacing:0}
 section{padding:clamp(70px,11vw,150px) 0}
 
 /* cursor */
-.cur{position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--acc);pointer-events:none;z-index:99;mix-blend-mode:multiply;transform:translate(-50%,-50%);transition:width .25s,height .25s;display:none}
-.cur.big{width:70px;height:70px}
-@media(hover:hover){.cur{display:block}}
+.cur{position:fixed;top:0;left:0;width:0;height:0;pointer-events:none;z-index:99;display:none;will-change:transform}
+.cur::before{content:"";position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:var(--acc);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.cur.big::before{transform:scale(4.6)}
+.full .cur{display:block}
 
 /* nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,5vw,72px);color:var(--ink)}
@@ -327,6 +331,24 @@ footer a{display:inline-block;padding:8px 0}
   .mmenu a:active{color:var(--acc)}
   .script{font-size:9.4vw;white-space:nowrap;margin-top:-.45em}
 }
+
+/* ---- performance / device modes ---- */
+.wall.lit{--mx:50%;--my:50%}
+.glow{display:none;position:absolute;left:0;top:0;width:90vmin;height:90vmin;margin:-45vmin 0 0 -45vmin;border-radius:50%;background:radial-gradient(circle,rgba(255,150,100,.34),rgba(255,150,100,0) 68%);pointer-events:none;z-index:1;will-change:transform;animation:drift 16s ease-in-out infinite alternate}
+.lite .glow{display:block}
+@keyframes drift{0%{transform:translate3d(10vw,18vh,0)}33%{transform:translate3d(78vw,30vh,0)}66%{transform:translate3d(30vw,62vh,0)}100%{transform:translate3d(85vw,78vh,0)}}
+.paused .glow,.paused .mq div,.paused .pfb svg{animation-play-state:paused}
+.lite .wall.lit{display:none}
+.lite .wall.dim{filter:brightness(.5) saturate(1.1);opacity:1}
+.lite .wall img:nth-child(n+16){display:none}
+.lite .hh,.lite .script{text-shadow:none}
+.lite .pill,.lite nav .logo,.lite nav ul,.lite .mbtn{backdrop-filter:none}
+.lite .cardx{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+
+/* ---- spotlight: compositor-only (two transforms per frame, no repaint) ---- */
+.spot{display:none;position:absolute;left:0;top:0;width:600px;height:600px;margin:-300px 0 0 -300px;border-radius:50%;overflow:hidden;pointer-events:none;will-change:transform;-webkit-mask-image:radial-gradient(circle closest-side,#000 0%,rgba(0,0,0,.6) 55%,transparent 100%);mask-image:radial-gradient(circle closest-side,#000 0%,rgba(0,0,0,.6) 55%,transparent 100%)}
+.full .spot{display:block}
+.spot .wall.lit{display:grid;inset:auto;left:0;top:0;right:auto;bottom:auto;-webkit-mask-image:none;mask-image:none;will-change:transform}
 </style>
 </head>
 <body class="loading">
@@ -341,8 +363,8 @@ footer a{display:inline-block;padding:8px 0}
 <div id="mmenu" class="mmenu"><a href="#work">Work</a><a href="#brands">Brands</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></div>
 
 <header id="hero">
-  <div class="wall dim" aria-hidden="true"><img src="458.jpg" alt="" decoding="async"><img src="marshall.jpg" alt="" decoding="async"><img src="camaro.jpg" alt="" decoding="async"><img src="cr7.jpg" alt="" decoding="async"><img src="apple.jpg" alt="" decoding="async"><img src="dis_face.jpg" alt="" decoding="async"><img src="frost.jpg" alt="" decoding="async"><img src="lh44.jpg" alt="" decoding="async"><img src="ferrari.jpg" alt="" decoding="async"><img src="vini.jpg" alt="" decoding="async"><img src="lm10.jpg" alt="" decoding="async"><img src="bmw-m4.jpg" alt="" decoding="async"><img src="lamborghini.jpg" alt="" decoding="async"><img src="gt3-rs.jpg" alt="" decoding="async"><img src="ford.jpg" alt="" decoding="async"><img src="njr.jpg" alt="" decoding="async"><img src="srt.jpg" alt="" decoding="async"><img src="ly.jpg" alt="" decoding="async"></div>
-  <div class="wall lit" aria-hidden="true"><img src="458.jpg" alt="" decoding="async"><img src="marshall.jpg" alt="" decoding="async"><img src="camaro.jpg" alt="" decoding="async"><img src="cr7.jpg" alt="" decoding="async"><img src="apple.jpg" alt="" decoding="async"><img src="dis_face.jpg" alt="" decoding="async"><img src="frost.jpg" alt="" decoding="async"><img src="lh44.jpg" alt="" decoding="async"><img src="ferrari.jpg" alt="" decoding="async"><img src="vini.jpg" alt="" decoding="async"><img src="lm10.jpg" alt="" decoding="async"><img src="bmw-m4.jpg" alt="" decoding="async"><img src="lamborghini.jpg" alt="" decoding="async"><img src="gt3-rs.jpg" alt="" decoding="async"><img src="ford.jpg" alt="" decoding="async"><img src="njr.jpg" alt="" decoding="async"><img src="srt.jpg" alt="" decoding="async"><img src="ly.jpg" alt="" decoding="async"></div>
+  <div class="wall dim" aria-hidden="true"><img src="wall/458.jpg" alt="" decoding="async"><img src="wall/marshall.jpg" alt="" decoding="async"><img src="wall/camaro.jpg" alt="" decoding="async"><img src="wall/cr7.jpg" alt="" decoding="async"><img src="wall/apple.jpg" alt="" decoding="async"><img src="wall/dis_face.jpg" alt="" decoding="async"><img src="wall/frost.jpg" alt="" decoding="async"><img src="wall/lh44.jpg" alt="" decoding="async"><img src="wall/ferrari.jpg" alt="" decoding="async"><img src="wall/vini.jpg" alt="" decoding="async"><img src="wall/lm10.jpg" alt="" decoding="async"><img src="wall/bmw-m4.jpg" alt="" decoding="async"><img src="wall/lamborghini.jpg" alt="" decoding="async"><img src="wall/gt3-rs.jpg" alt="" decoding="async"><img src="wall/ford.jpg" alt="" decoding="async"><img src="wall/njr.jpg" alt="" decoding="async" loading="lazy"><img src="wall/srt.jpg" alt="" decoding="async" loading="lazy"><img src="wall/ly.jpg" alt="" decoding="async" loading="lazy"></div>
+  <div class="glow" aria-hidden="true"></div>
   <div class="hc">
     <p class="greet fu" style="--d:1">👋 Hey, I'm</p>
     <h1 class="hh"><span class="w"><span style="--d:1">Dharani</span></span><span class="w"><span style="--d:2">Jayan</span></span><span class="script">Freelance Designer</span></h1>
@@ -476,7 +498,7 @@ footer a{display:inline-block;padding:8px 0}
 // image fallback: tries alternate spelling / sub-folders if a file isn't found
 const ALT={'gt3rs.jpg':'gt3-rs.jpg','gt3-rs.jpg':'gt3rs.jpg'};
 window.addEventListener('error',e=>{const i=e.target;if(!i||i.tagName!=='IMG')return;
-  const o=i.dataset.o||(i.dataset.o=i.getAttribute('src'));const t=[ALT[o],'thumbs/'+o,'web/'+o].filter(Boolean);
+  const o=i.dataset.o||(i.dataset.o=i.getAttribute('src'));const b=o.replace(/^wall\//,'');const t=[...(b!==o?[b]:[]),ALT[b],'thumbs/'+b,'web/'+b].filter(Boolean);
   const n=+(i.dataset.n||0);if(n<t.length){i.dataset.n=n+1;i.src=t[n]}},true);
 const works=[
 ["458.jpg","458 Italia","Auto"],["dis_face.jpg","Beyond the Glitch","Concept"],["cr7.jpg","CR7","Sports"],["camaro.jpg","Camaro","Auto"],["ferrari.jpg","LaFerrari","Auto"],["apple.jpg","Pure Sound","Product"],["marshall.jpg","Marshall","Product"],["john_1.jpg","The King in the North","Series"],["at.jpg","Aemond Targaryen","Series"],["dt.jpg","Daemon Targaryen","Series"],["john_2.jpg","Kill the Boy","Series"],["pm.jpg","Paolo Maldini","Sports"],["blade.jpg","The White Ronin","Concept"],["lh44.jpg","LH44","Sports"],
@@ -521,19 +543,36 @@ lb.querySelector('.nx').onclick=e=>{e.stopPropagation();show(cur+1)};
 lb.onclick=e=>{if(e.target===lb)setLB(false)};
 let sx=0;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(cur+(d<0?1:-1))});
 addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')setLB(false);if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
-// hero spotlight
-const hero=document.getElementById('hero');let tx=0,ty=0,cx=0,cy=0,lastMove=0;
-hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;lastMove=performance.now()});
-const touch=matchMedia('(hover:none)').matches;
-(function loop(t){
-  if(touch)return;
-  const r=hero.getBoundingClientRect();
-  if(r.bottom<0||r.top>innerHeight){requestAnimationFrame(loop);return}
-  if(t-lastMove>2500){tx=r.width*(.5+.38*Math.sin(t/1700));ty=r.height*(.5+.32*Math.cos(t/1300))}
-  cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;
-  hero.style.setProperty('--mx',cx+'px');hero.style.setProperty('--my',cy+'px');
-  requestAnimationFrame(loop);
-})(0);
+// ---- device mode: "full" = desktop with a real mouse, "lite" = phones / tablets / low-power ----
+const root=document.documentElement;
+const computeLite=()=>{const m=matchMedia,c=navigator.connection;return m('(hover:none)').matches||m('(pointer:coarse)').matches||innerWidth<=900||m('(prefers-reduced-motion:reduce)').matches||!!(c&&c.saveData)||!!(navigator.deviceMemory&&navigator.deviceMemory<=2)||!!(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=2)};
+const isFull=()=>root.classList.contains('full');
+const hero=document.getElementById('hero');
+let litEl=null,spotEl=null,heroVis=true,heroW=hero.clientWidth,heroH=hero.clientHeight,tx=0,ty=0,cx=heroW/2,cy=heroH/2,lastMove=0,raf=0;
+function place(){ // two GPU transforms: move the window, counter-move the coloured wall inside it
+  spotEl.style.transform='translate3d('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px,0)';
+  litEl.style.transform='translate3d('+(300-cx-heroW*.02).toFixed(1)+'px,'+(300-cy-heroH*.02).toFixed(1)+'px,0)'}
+function sizeLit(){if(!litEl)return;litEl.style.width=(heroW*1.04)+'px';litEl.style.height=(heroH*1.04)+'px';place()}
+function spot(t){raf=0;if(!heroVis||!isFull()||!litEl||document.hidden)return;
+  if(t-lastMove>2500){tx=heroW*(.5+.38*Math.sin(t/1700));ty=heroH*(.5+.32*Math.cos(t/1300))}
+  cx+=(tx-cx)*.1;cy+=(ty-cy)*.1;place();
+  raf=requestAnimationFrame(spot)}
+function startSpot(){if(!raf&&heroVis&&isFull()&&litEl)raf=requestAnimationFrame(spot)}
+function applyMode(){
+  const lite=computeLite();root.classList.toggle('lite',lite);root.classList.toggle('full',!lite);
+  if(!lite&&!litEl){const dim=hero.querySelector('.wall.dim');
+    litEl=dim.cloneNode(true);litEl.className='wall lit';litEl.querySelectorAll('img').forEach(i=>i.removeAttribute('loading'));
+    spotEl=document.createElement('div');spotEl.className='spot';spotEl.setAttribute('aria-hidden','true');spotEl.appendChild(litEl);dim.after(spotEl);sizeLit()}
+  startSpot()}
+new ResizeObserver(()=>{heroW=hero.clientWidth;heroH=hero.clientHeight;sizeLit()}).observe(hero);
+// hero sits at the very top of the page, so page coordinates == hero coordinates (no layout read needed)
+hero.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;tx=e.pageX;ty=e.pageY;lastMove=performance.now()},{passive:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)startSpot()});
+let modeT;addEventListener('resize',()=>{clearTimeout(modeT);modeT=setTimeout(applyMode,200)});
+// pause endless animations (and the spotlight) whenever they're off-screen
+const pauseIO=new IntersectionObserver(es=>es.forEach(e=>{e.target.classList.toggle('paused',!e.isIntersecting);if(e.target===hero){heroVis=e.isIntersecting;if(heroVis)startSpot()}}));
+[hero,document.querySelector('.mqw'),document.querySelector('.pfb')].forEach(el=>el&&pauseIO.observe(el));
+applyMode();
 // experience interactions
 const xs=[...document.querySelectorAll('.xi')],jr=document.querySelector('.jr'),xcount=document.getElementById('xcount');
 let xa=0,dragged=false,lockUntil=0;
@@ -586,14 +625,15 @@ const ws=['Brands','Posters','Visuals','Ready.'];const t0=performance.now();
 let went=false;const go=()=>{if(went)return;went=true;ld.classList.add('done');document.body.classList.remove('loading');document.body.classList.add('ready');setTimeout(()=>ld.remove(),1500)};
 setTimeout(go,6500);
 (function tick(now){
-  const p=Math.min(((now||performance.now())-t0)/2400,1),n=Math.round(100*(1-Math.pow(1-p,2.2)));
+  const p=Math.min(((now||performance.now())-t0)/(root.classList.contains('lite')?1700:2400),1),n=Math.round(100*(1-Math.pow(1-p,2.2)));
   ln.textContent=n;lbar.style.width=n+'%';lw.textContent=ws[Math.min(3,Math.floor(n/25))];lw.classList.toggle('fin',n===100);
   if(p<1)requestAnimationFrame(tick);else setTimeout(()=>document.readyState==='complete'?go():addEventListener('load',go),350);
 })();
-// cursor
-const cu=document.getElementById('cur');
-addEventListener('mousemove',e=>{cu.style.left=e.clientX+'px';cu.style.top=e.clientY+'px'});
-document.addEventListener('mouseover',e=>cu.classList.toggle('big',!!e.target.closest('a,button,.card')));
+// cursor (desktop mouse only; moved with transform so it never triggers layout)
+const cu=document.getElementById('cur');let px=0,py=0,cr=0;
+addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||!isFull())return;px=e.clientX;py=e.clientY;
+  if(!cr)cr=requestAnimationFrame(()=>{cr=0;cu.style.transform='translate3d('+px+'px,'+py+'px,0)'})},{passive:true});
+document.addEventListener('pointerover',e=>{if(e.pointerType!=='mouse'||!isFull())return;cu.classList.toggle('big',!!e.target.closest('a,button,.card,.fold,.xi'))},{passive:true});
 </script>
 </body>
 </html>
