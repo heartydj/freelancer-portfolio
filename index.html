@@ -319,22 +319,50 @@ body.loading,body.lockscroll{overflow:hidden}
 #ldb{display:block;height:100%;width:0;background:var(--acc)}
 
 /* marquee */
-.mqw{overflow:hidden;padding:16px 0;position:relative}
+.mqw{
+  overflow:hidden;padding:18px 0;position:relative;
+  user-select:none;-webkit-user-select:none;pointer-events:none;
+}
 .mq{
-  background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;
+  background:var(--ink);color:var(--paper);
   padding:16px 0;transform:rotate(-1.5deg) scale(1.03);margin:0 -20px;
+  display:flex;overflow:visible;
   will-change:transform;
 }
-.mq div{
-  display:inline-block;animation:mq 28s linear infinite;
-  font-size:clamp(1.2rem,3vw,2.4rem);font-weight:800;will-change:transform;
+.mq-track{
+  display:flex;align-items:center;flex-shrink:0;min-width:100vw;
+  white-space:nowrap;padding:0 8px;
+  -webkit-animation:mq-scroll 26s linear infinite;
+  animation:mq-scroll 26s linear infinite;
+  will-change:transform;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);
 }
-.mq em{color:var(--acc);margin:0 18px}
-@keyframes mq{to{transform:translateX(-50%)}}
+.mq-track span{
+  display:inline-flex;align-items:center;
+  font-size:clamp(1.1rem,3vw,2.2rem);font-weight:800;letter-spacing:-.01em;
+  white-space:nowrap;
+}
+.mq em{color:var(--acc);margin:0 16px;font-style:normal;line-height:1}
+
+@-webkit-keyframes mq-scroll{
+  0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+  100%{-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}
+}
+@keyframes mq-scroll{
+  0%{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+  100%{-webkit-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}
+}
+
 @media(max-width:700px){
-  .mq div{font-size:1.25rem}
+  .mqw{padding:12px 0}
+  .mq{padding:11px 0}
+  .mq-track{
+    -webkit-animation:mq-scroll 18s linear infinite;
+    animation:mq-scroll 18s linear infinite;
+  }
+  .mq-track span{font-size:1.25rem}
   .mq em{margin:0 12px}
-  .mq{padding:12px 0}
 }
 
 /* work */
@@ -847,7 +875,10 @@ footer a:hover{color:var(--ink)}
   #lb .nx:active{transform:scale(.92)}
 }
 
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .mq-track{animation-duration:50s!important}
+}
 </style>
 </head>
 <body class="loading">
@@ -934,7 +965,19 @@ footer a:hover{color:var(--ink)}
   </div>
 </header>
 
-<div class="mqw"><div class="mq"><div id="mq"></div></div></div>
+<div class="mqw" aria-hidden="true">
+  <div class="mq" role="marquee">
+    <div class="mq-track">
+      <span>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em></span>
+    </div>
+    <div class="mq-track" aria-hidden="true">
+      <span>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em></span>
+    </div>
+    <div class="mq-track" aria-hidden="true">
+      <span>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em>Brand Identity<em>✦</em>Poster Art<em>✦</em>Logo Design<em>✦</em>Social Creatives<em>✦</em>UI/UX<em>✦</em>Visual Storytelling<em>✦</em></span>
+    </div>
+  </div>
+</div>
 
 <section id="work"><div class="wrap">
   <div class="work-head">
@@ -1005,7 +1048,7 @@ footer a:hover{color:var(--ink)}
       <p>I'm a B.Tech Information Technology graduate who fell for design. That mix means I care about how a brand looks <em>and</em> how it works — across print, social and screen.</p>
       <p>Right now I'm shaping brand and UI/UX work with Iaaxin Tech Labs, and working as a freelance videographer and designer for Bizhunch.</p>
       <div class="stats">
-        <div><b>24+</b><span class="label">Poster designs</span></div>
+        <div><b>25+</b><span class="label">Poster designs</span></div>
         <div><b>4</b><span class="label">Brand identities</span></div>
         <div><b>3</b><span class="label">Companies</span></div>
       </div>
@@ -1181,7 +1224,8 @@ const works=[
   ["lamborghini.jpg","Lamborghini","Auto"],["gt3-rs.jpg","Porsche GT3 RS","Auto"],
   ["lm10.jpg","LM10 — Messi","Sports"],["ford.jpg","Mustang GT500","Auto"],
   ["frost.jpg","Behind the Focus","Concept"],["njr.jpg","NJR — Neymar","Sports"],
-  ["srt.jpg","Dodge SRT","Auto"],["ly.jpg","Lamine Yamal","Sports"]
+  ["srt.jpg","Dodge SRT","Auto"],["ly.jpg","Lamine Yamal","Sports"],
+  ["thala.jpg","Thala 7 — MS Dhoni","Sports"]
 ];
 
 const folderDefs=[
@@ -1276,10 +1320,7 @@ function closeFolder(){
 document.getElementById('back')?.addEventListener('click', closeFolder);
 document.getElementById('back-foot')?.addEventListener('click', closeFolder);
 
-// marquee
-const words=['Brand Identity','Poster Art','Logo Design','Social Creatives','UI/UX','Visual Storytelling'];
-const one=words.map(w=>`${w}<em>✦</em>`).join('');
-document.getElementById('mq').innerHTML=one+one+one+one;
+// marquee pre-rendered in HTML for instant 60fps GPU compositor animation
 
 // lightbox
 const lb=document.getElementById('lb');
